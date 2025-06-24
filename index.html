@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kunal Sur - Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/lucide@latest" rel="stylesheet">
+  <style>
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    :root {
+      --primary: #4F46E5;
+      --secondary: #10B981;
+      --accent: #F59E0B;
+      --dark: #1F2937;
+      --light: #F9FAFB;
+      --text: #374151;
+      --text-light: #6B7280;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: white;
+      color: var(--text);
+    }
+
+    .gradient-bg {
+      background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1), rgba(245, 158, 11, 0.1));
+      background-size: 200% 200%;
+      animation: gradient 15s ease infinite;
+    }
+
+    .nav-link.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .skill-bullet {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .project-accent {
+      animation: scaleX 3s infinite;
+    }
+
+    @keyframes scaleX {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(1.05); }
+    }
+
+    .floating {
+      animation: float 2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .arrow-move {
+      animation: moveRight 2s infinite;
+    }
+
+    @keyframes moveRight {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+
+    .download-bounce {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-2px); }
+    }
+
+    .rotate-on-hover:hover {
+      animation: rotate 1s;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-hover {
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 16px 32px -8px rgba(79,70,229,0.10), 0 2px 8px rgba(0,0,0,0.03);
+      background: rgba(255,255,255,0.85);
+    }
+
+    .btn-cta {
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(79,70,229,0.08);
+    }
+
+    .btn-cta:hover {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #fff !important;
+      transform: translateY(-2px) scale(1.04);
+    }
+
+    .social-icon {
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+
+    .social-icon:hover {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #fff !important;
+      transform: scale(1.15) rotate(-8deg);
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.7);
+      box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 0.7s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title { font-size: 1.5rem; }
+      .glass { border-radius: 1rem; }
+    }
+
+    .badge-skill {
+      background: #f3f4f6;
+      color: #374151;
+      font-size: 0.95rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      transition: background 0.2s;
+      display: inline-block;
+      margin-bottom: 0.25rem;
+    }
+    .badge-skill:hover {
+      background: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating background elements -->
+  <div class="fixed inset-0 -z-10 opacity-10 gradient-bg"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold flex items-center gap-2" style="color: var(--primary)">
+        <i data-lucide="sparkles" class="rotate-on-hover"></i>
+        Kunal Sur
+      </div>
+      
+      <nav class="hidden md:block">
+        <ul class="flex space-x-1" id="nav-links">
+          <li>
+            <button class="nav-link flex items-center px-4 py-2 rounded-full" data-section="about">
+              <i data-lucide="user" class="h-4 w-4 mr-2"></i>
+              About
+            </button>
+          </li>
+          <li>
+            <button class="nav-link flex items-center px-4 py-2 rounded-full" data-section="education">
+              <i data-lucide="book-open" class="h-4 w-4 mr-2"></i>
+              Education
+            </button>
+          </li>
+          <li>
+            <button class="nav-link flex items-center px-4 py-2 rounded-full" data-section="skills">
+              <i data-lucide="code" class="h-4 w-4 mr-2"></i>
+              Skills
+            </button>
+          </li>
+          <li>
+            <button class="nav-link flex items-center px-4 py-2 rounded-full" data-section="projects">
+              <i data-lucide="briefcase" class="h-4 w-4 mr-2"></i>
+              Projects
+            </button>
+          </li>
+          <li>
+            <button class="nav-link flex items-center px-4 py-2 rounded-full" data-section="contact">
+              <i data-lucide="mail" class="h-4 w-4 mr-2"></i>
+              Contact
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 pt-28 pb-16 space-y-28">
+    <!-- About Section -->
+    <section id="about" class="scroll-mt-24">
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <div class="w-full lg:w-1/3 flex justify-center fade-in-up" style="animation-delay:0.1s;">
+          <div class="relative group w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center">
+            <div class="absolute -inset-1 rounded-2xl blur opacity-20 group-hover:opacity-30 transition-opacity duration-300"
+                 style="background: linear-gradient(45deg, var(--primary), var(--secondary));"></div>
+            <div class="relative glass w-56 h-56 sm:w-64 sm:h-64 flex items-center justify-center overflow-hidden border border-gray-200 shadow-sm rounded-2xl">
+              <div class="absolute inset-0 opacity-60 rounded-2xl"
+                   style="background: linear-gradient(45deg, rgba(79, 70, 229, 0.1), rgba(16, 185, 129, 0.1));"></div>
+              <!-- Square image styling -->
+              <img src="kunal sur01.JPG" alt="Kunal Sur"
+                   class="shadow-2xl border-8 border-white dark:border-gray-700 w-full h-full object-cover transition-all duration-700 ease-in-out opacity-0 rounded-none"
+                   onload="this.style.opacity=1" />
+            </div>
+          </div>
+        </div>
+        
+        <div class="w-full lg:w-2/3 space-y-6 fade-in-up" style="animation-delay:0.2s;">
+          <div>
+            <h1 class="section-title gradient-text mb-2">Kunal Sur</h1>
+            <h2 class="text-xl font-medium mb-2" style="color: var(--primary)">Full Stack Developer</h2>
+            <div class="mt-2 text-gray-600">
+              <span><i data-lucide="mail" class="inline h-5 w-5 mr-1"></i> kunalsur2001@gmail.com</span><br>
+              <span><i data-lucide="phone" class="inline h-5 w-5 mr-1"></i> +91 8767431628</span><br>
+              <span><i data-lucide="map-pin" class="inline h-5 w-5 mr-1"></i> Chandrapur, India</span>
+            </div>
+          </div>
+          
+          <p class="text-lg leading-relaxed">
+            A motivated Computer Science graduate with hands-on experience in frontend and backend web development. Skilled in HTML, CSS, JavaScript, C, and the MERN stack. Seeking an entry-level role to contribute to real-world projects and grow with a tech-driven team.
+          </p>
+          
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="mailto:kunalsur2001@gmail.com"
+               class="flex items-center gap-2 px-4 py-2 rounded-md text-white btn-cta"
+               style="background: linear-gradient(90deg, var(--primary), var(--secondary));">
+              <i data-lucide="mail" class="h-4 w-4"></i>
+              Email Me
+            </a>
+            <a href="#contact"
+               class="flex items-center gap-2 px-4 py-2 rounded-md border btn-cta"
+               style="border-color: var(--primary); color: var(--primary); background: #fff;">
+              Contact Me
+              <i data-lucide="arrow-right" class="h-4 w-4 arrow-move"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Education Section -->
+    <section id="education" class="scroll-mt-24 py-16 px-4 sm:px-8 bg-gray-50">
+      <div class="max-w-6xl mx-auto space-y-12">
+        <!-- Header -->
+        <div class="flex items-center gap-4">
+          <div class="p-3 rounded-full bg-emerald-100 text-emerald-600 shadow">
+            <i data-lucide="book-open" class="h-6 w-6"></i>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold gradient-text bg-clip-text text-transparent bg-gradient-to-r from-emerald-500 to-indigo-600">
+            Education
+          </h2>
+        </div>
+
+        <!-- Education Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          
+          <!-- B.Tech -->
+          <div class="group relative border border-gray-200 rounded-2xl shadow-lg bg-white transition-all hover:-translate-y-1 hover:shadow-xl duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-emerald-600 mb-2">B.Tech, Computer Science</h3>
+              <div class="text-gray-700 font-semibold flex items-center mb-1">
+                <i data-lucide="school" class="h-5 w-5 mr-2 text-indigo-500"></i>
+                Shri Sai College Of Engineering And Technology
+              </div>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <i data-lucide="calendar" class="h-4 w-4 mr-1"></i> 2020 – 2024
+              </div>
+              <div class="mt-3 flex items-center">
+                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 text-xs rounded-full mr-2 font-semibold">CGPA</span>
+                <span class="text-lg font-bold text-indigo-700">7.68 / 10</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Senior Secondary -->
+          <div class="group relative border border-gray-200 rounded-2xl shadow-lg bg-white transition-all hover:-translate-y-1 hover:shadow-xl duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-green-600 mb-2">Senior Secondary (XII), Science</h3>
+              <div class="text-gray-700 font-semibold flex items-center mb-1">
+                <i data-lucide="school" class="h-5 w-5 mr-2 text-green-500"></i>
+                Vidya Niketan Jr College Chandrapur
+              </div>
+                <br>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <i data-lucide="calendar" class="h-4 w-4 mr-1"></i> 2020
+              </div>
+              <div class="mt-3 flex items-center">
+                <span class="bg-green-100 text-black-700 px-3 py-1 text-xs rounded-full mr-2 font-semibold">Percentage</span>
+                <span class="text-lg font-bold text-green-700">53.84%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secondary -->
+          <div class="group relative border border-gray-200 rounded-2xl shadow-lg bg-white transition-all hover:-translate-y-1 hover:shadow-xl duration-300">
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-yellow-600 mb-2">Secondary (X)</h3>
+              <div class="text-gray-700 font-semibold flex items-center mb-1">
+                <i data-lucide="school" class="h-5 w-5 mr-2 text-yellow-500"></i>
+                St Anne's High School Chandrapur
+              </div>
+                <br>
+                  <br>
+              <div class="flex items-center text-sm text-gray-500 mb-2">
+                <i data-lucide="calendar" class="h-4 w-4 mr-1"></i> 2018
+              </div>
+              <div class="mt-3 flex items-center">
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 text-xs rounded-full mr-2 font-semibold">Percentage</span>
+                <span class="text-lg font-bold text-yellow-700">65.40%</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Trainings / Certifications Section -->
+    <section id="certifications" class="scroll-mt-24">
+      <div class="space-y-8 fade-in-up" style="animation-delay:0.3s;">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg" style="background-color: rgba(245, 158, 11, 0.1); color: var(--accent)">
+            <i data-lucide="zap" class="h-6 w-6"></i>
+          </div>
+          <h2 class="section-title gradient-text">Trainings & Certifications</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card-hover glass fade-in-up" style="animation-delay:0.4s;">
+            <div class="p-6">
+              <h3 class="text-lg font-bold" style="color: var(--accent)">Build Your Own Capstone Project</h3>
+              <p class="text-sm text-gray-500 mb-2">Internshala Trainings, Virtual • May 2025 - Jun 2025</p>
+              <p>Hands-on project development focused on building a full-stack MERN application from scratch. Involved frontend (React), backend (Node.js, Express), authentication using JWT, MongoDB integration, and deployment best practices.</p>
+            </div>
+          </div>
+          <div class="card-hover glass fade-in-up" style="animation-delay:0.5s;">
+            <div class="p-6">
+              <h3 class="text-lg font-bold" style="color: var(--accent)">Building Modern Web Applications Using React</h3>
+              <p class="text-sm text-gray-500 mb-2">Internshala Trainings, Virtual • Mar 2025 - Apr 2025</p>
+              <p>Comprehensive training on modern frontend development using React. Topics included component-based architecture, state management, React Router, hooks, and building responsive single-page applications.</p>
+            </div>
+          </div>
+          <!-- Add more certifications as needed, following the same structure -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Enhanced Skills Section -->
+    <section id="skills" class="scroll-mt-24 py-16 px-4 sm:px-8 bg-white">
+      <div class="max-w-6xl mx-auto space-y-12">
+        
+        <!-- Header -->
+        <div class="flex items-center gap-4">
+          <div class="p-3 rounded-full bg-indigo-100 text-indigo-600 shadow">
+            <i data-lucide="code" class="h-6 w-6"></i>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold gradient-text bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-600">
+            Skills
+          </h2>
+        </div>
+
+        <!-- Skill Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Languages & Frameworks -->
+          <div class="group rounded-2xl border border-gray-200 shadow-md bg-white transition-all hover:scale-[1.02] hover:shadow-xl duration-300 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="terminal-square" class="text-blue-500 h-6 w-6"></i>
+              <h3 class="text-lg font-bold text-blue-600">Languages & Frameworks</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-skill">HTML5</span>
+              <span class="badge-skill">CSS3</span>
+              <span class="badge-skill">JavaScript</span>
+              <span class="badge-skill">C</span>
+              <span class="badge-skill">React</span>
+              <span class="badge-skill">Node.js</span>
+              <span class="badge-skill">Express.js</span>
+              <span class="badge-skill">MongoDB</span>
+            </div>
+          </div>
+
+          <!-- Tools & Platforms -->
+          <div class="group rounded-2xl border border-gray-200 shadow-md bg-white transition-all hover:scale-[1.02] hover:shadow-xl duration-300 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="settings" class="text-green-500 h-6 w-6"></i>
+              <h3 class="text-lg font-bold text-green-600">Tools & Platforms</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-skill">Git</span>
+              <span class="badge-skill">GitHub</span>
+              <span class="badge-skill">REST API</span>
+              <span class="badge-skill">ThunderClient</span>
+              <span class="badge-skill">Responsive Design</span>
+            </div>
+          </div>
+
+          <!-- Other Skills -->
+          <div class="group rounded-2xl border border-gray-200 shadow-md bg-white transition-all hover:scale-[1.02] hover:shadow-xl duration-300 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="sparkles" class="text-yellow-500 h-6 w-6"></i>
+              <h3 class="text-lg font-bold text-yellow-600">Other Skills</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-skill">DSA</span>
+              <span class="badge-skill">Problem Solving</span>
+              <span class="badge-skill">Teamwork</span>
+              <span class="badge-skill">Communication</span>
+            </div>
+          </div>
+
+          <!-- Currently Learning -->
+          <div class="group rounded-2xl border border-gray-200 shadow-md bg-white transition-all hover:scale-[1.02] hover:shadow-xl duration-300 p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <i data-lucide="book" class="text-purple-500 h-6 w-6"></i>
+              <h3 class="text-lg font-bold text-purple-600">Currently Learning</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-skill">TypeScript</span>
+              <span class="badge-skill">Redux Toolkit</span>
+              <span class="badge-skill">Tailwind CSS</span>
+              <span class="badge-skill">Next.js</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="scroll-mt-24">
+      <div class="space-y-8 fade-in-up" style="animation-delay:0.5s;">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg" style="background-color: rgba(245, 158, 11, 0.1); color: var(--accent)">
+            <i data-lucide="briefcase" class="h-6 w-6"></i>
+          </div>
+          <h2 class="section-title gradient-text">Projects</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="card-hover glass fade-in-up" style="animation-delay:0.6s;">
+            <div class="h-1.5 project-accent" style="background-color: var(--primary)"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold" style="color: var(--dark)">YouTube-Inspired Platform</h3>
+              <p class="mt-2 leading-relaxed">
+                Built a full-featured YouTube clone using MongoDB, Express, React, and Node.js. Implemented video upload, JWT-based authentication, search, likes, comments, and subscription system. Designed a responsive UI and personalized video recommendations.
+              </p>
+            </div>
+          </div>
+          
+          <div class="card-hover glass fade-in-up" style="animation-delay:0.7s;">
+            <div class="h-1.5 project-accent" style="background-color: var(--secondary)"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold" style="color: var(--dark)">ShoppyGlobe E-commerce Application</h3>
+              <p class="mt-2 leading-relaxed">
+                Developed a responsive e-commerce frontend using React.js and React Router. Integrated Redux for efficient cart and state management. Enabled features like product browsing, dynamic API fetching, and smooth checkout experience across devices.
+              </p>
+            </div>
+          </div>
+          
+          <div class="card-hover glass fade-in-up" style="animation-delay:0.8s;">
+            <div class="h-1.5 project-accent" style="background-color: var(--accent)"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold" style="color: var(--dark)">Weather Forecast Application</h3>
+              <p class="mt-2 leading-relaxed">
+                Built a weather forecast app using JavaScript and the OpenWeatherMap API. Enabled users to search locations and view real-time weather updates. Used async fetch calls and DOM manipulation to display data dynamically with a responsive UI.
+              </p>
+            </div>
+          </div>
+          
+          <!-- Add more projects as needed -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Extra Curricular / Additional Details Section -->
+    <section id="extra" class="scroll-mt-24">
+      <div class="space-y-8 fade-in-up" style="animation-delay:0.6s;">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg" style="background-color: rgba(16, 185, 129, 0.1); color: var(--secondary)">
+            <i data-lucide="star" class="h-6 w-6"></i>
+          </div>
+          <h2 class="section-title gradient-text">Extra Curricular & Achievements</h2>
+        </div>
+        
+        <ul class="space-y-2 text-gray-600">
+          <li>Published research papers on AI & Big Data at ICSSET 2023 and on IoT Security in IJIRCCE 2024.</li>
+          <li>Participated in National and International Research Conferences on AI, IoT, and Big Data.</li>
+          <li>Enthusiastic about web development, fitness, and travel, contributing to a balanced and creative mindset.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="scroll-mt-24">
+      <div class="space-y-8 fade-in-up" style="animation-delay:0.7s;">
+        <div class="flex items-center gap-3">
+          <div class="p-2 rounded-lg" style="background-color: rgba(79, 70, 229, 0.1); color: var(--primary)">
+            <i data-lucide="mail" class="h-6 w-6"></i>
+          </div>
+          <h2 class="section-title gradient-text">Contact</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Contact Info -->
+          <div class="space-y-6">
+            <h3 class="text-xl font-semibold" style="color: var(--dark)">Let's Connect</h3>
+            <p class="leading-relaxed" style="color: var(--text)">
+              I'm currently open to new opportunities and collaborations.<br>
+              Feel free to reach out for project inquiries or just to say hello!
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <i data-lucide="mail" style="color: var(--primary)" class="h-5 w-5"></i>
+                <span style="color: var(--text)">kunalsur2001@gmail.com</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <i data-lucide="phone" style="color: var(--primary)" class="h-5 w-5"></i>
+                <span style="color: var(--text)">+91 8767431628</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <i data-lucide="map-pin" style="color: var(--primary)" class="h-5 w-5"></i>
+                <span style="color: var(--text)">Chandrapur, India</span>
+              </div>
+            </div>
+            <div class="flex gap-4 pt-2">
+              <a href="https://github.com/Kunal-2001-12" target="_blank" rel="noopener" class="social-icon p-2.5 rounded-lg" style="background-color: rgba(79,70,229,0.08); color: var(--primary)">
+                <i data-lucide="github" class="h-5 w-5"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/kunal-sur-4593392a3" target="_blank" rel="noopener" class="social-icon p-2.5 rounded-lg" style="background-color: rgba(79,70,229,0.08); color: var(--primary)">
+                <i data-lucide="linkedin" class="h-5 w-5"></i>
+              </a>
+              <a href="#" class="social-icon p-2.5 rounded-lg" style="background-color: rgba(79,70,229,0.08); color: var(--primary)">
+                <i data-lucide="twitter" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+          <!-- Contact Form -->
+          <form action="https://formspree.io/f/xrbkoggr" method="POST" class="glass p-8 rounded-2xl shadow-md space-y-6" style="background:rgba(255,255,255,0.8)">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-1.5" style="color: var(--text)">Name</label>
+              <input type="text" id="name" name="name" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all"
+                style="color: var(--text); outline: none;">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium mb-1.5" style="color: var(--text)">Email</label>
+              <input type="email" id="email" name="email" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all"
+                style="color: var(--text); outline: none;">
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium mb-1.5" style="color: var(--text)">Message</label>
+              <textarea id="message" name="message" rows="4" required
+                class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent transition-all"
+                style="color: var(--text); outline: none;"></textarea>
+            </div>
+            <button type="submit"
+              class="w-full mt-2 btn-cta px-4 py-2 rounded-md text-white font-semibold"
+              style="background: linear-gradient(90deg, var(--primary), var(--secondary));">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer style="background-color: var(--dark)" class="py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col items-center text-center space-y-6">
+        <div class="text-2xl font-bold text-white">Kunal Sur</div>
+        <p class="max-w-md" style="color: var(--text-light)">
+          Creating exceptional digital experiences with modern web technologies.
+        </p>
+        
+        <div class="flex gap-4">
+          <a href="https://github.com/Kunal-2001-12" target="_blank" rel="noopener" class="p-2.5 rounded-full transition-colors hover:bg-opacity-30" 
+             style="background-color: rgba(79, 70, 229, 0.2); color: white">
+            <i data-lucide="github" class="h-5 w-5"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/kunal-sur-4593392a3" target="_blank" rel="noopener" class="p-2.5 rounded-full transition-colors hover:bg-opacity-30" 
+             style="background-color: rgba(79, 70, 229, 0.2); color: white">
+            <i data-lucide="linkedin" class="h-5 w-5"></i>
+          </a>
+          <a href="#" class="p-2.5 rounded-full transition-colors hover:bg-opacity-30" 
+             style="background-color: rgba(79, 70, 229, 0.2); color: white">
+            <i data-lucide="twitter" class="h-5 w-5"></i>
+          </a>
+        </div>
+        
+        <div class="pt-4 w-full max-w-xs" style="border-top: 1px solid rgba(79, 70, 229, 0.3)">
+          <p class="text-sm" style="color: var(--text-light)">
+            &copy; <span id="current-year"></span> Kunal Sur. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Scroll to section function
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        window.scrollTo({
+          top: element.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      }
+    }
+    
+    // Handle navigation
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set active section on scroll
+      const sections = ['about', 'education', 'skills', 'projects', 'contact'];
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      function setActiveSection() {
+        const scrollPosition = window.scrollY + 100;
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element && element.offsetTop <= scrollPosition && 
+              element.offsetTop + element.offsetHeight > scrollPosition) {
+            navLinks.forEach(link => {
+              if (link.dataset.section === section) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+            break;
+          }
+        }
+      }
+      
+      // Set initial active section
+      setActiveSection();
+      
+      // Update on scroll
+      window.addEventListener('scroll', setActiveSection);
+      
+      // Add click handlers to nav links
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const sectionId = this.dataset.section;
+          scrollToSection(sectionId);
+        });
+      });
+      
+      // Add hover effects to cards
+      const cards = document.querySelectorAll('.card-hover');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-5px)';
+          this.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = '';
+          this.style.boxShadow = '';
+        });
+      });
+      
+      // Add hover effects to tags
+      const tags = document.querySelectorAll('.tag-hover');
+      tags.forEach(tag => {
+        tag.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.1)';
+        });
+        
+        tag.addEventListener('mouseleave', function() {
+          this.style.transform = '';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
