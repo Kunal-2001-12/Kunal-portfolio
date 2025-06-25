@@ -6,7 +6,7 @@ This site showcases my education, skills, projects, certifications, and contact 
 ## 🚀 Demo
 
 **Live Demo:**  
-[https://kunal-2001-12.github.io/kunal-sur-portfolio-/](https://kunal-2001-12.github.io/kunal-sur-portfolio-/)
+[https://kunal-2001-12.github.io/Kunal-portfolio/](https://kunal-2001-12.github.io/kunal-sur-portfolio-/)
 
 ## 📂 Features
 
