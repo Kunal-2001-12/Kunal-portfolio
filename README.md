@@ -27,7 +27,7 @@ This site showcases my education, skills, projects, certifications, and contact 
 
 ## 📸 Screenshot
 
-![Portfolio Screenshot](kunal%20sur01.JPG)
+![Portfolio Screenshot](Aboutpage.png)
 
 ## 📬 Contact
 
